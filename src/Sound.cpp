@@ -158,7 +158,7 @@ void Sound::resume()
 
 bool Sound::isValid() const
 {
-    return static_cast<bool>(channel_);
+    return channel_ != nullptr;
 }
 
 void Sound::invalidate()
