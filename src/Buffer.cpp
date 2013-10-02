@@ -9,6 +9,7 @@
 #include <fstream>
 #include <iostream>
 #include <cstdlib>
+#include <cstring>
 
 namespace audio
 {
@@ -32,7 +33,7 @@ Buffer::~Buffer()
 
 void Buffer::loadFromWAV(const std::string& filename)
 {
-    auto fileStream = std::ifstream(filename.c_str(), std::ios::in | std::ios::binary);
+    std::ifstream fileStream{filename.c_str(), std::ios_base::in | std::ios_base::binary};
 
     if(fileStream.is_open() && fileStream.good())
     {
@@ -41,7 +42,7 @@ void Buffer::loadFromWAV(const std::string& filename)
         uint32_t fileSize, formatLength, sampleRate, bytesPerSecond, dataSize;
 
         fileStream.read((char*)identifier, 4); // "RIFF"
-        if(strncmp((char*)identifier, "RIFF", 4))
+        if(std::strncmp((char*)identifier, "RIFF", 4))
         {
             std::cerr << filename << " is not a RIFF file" << std::endl;
         }
@@ -49,13 +50,13 @@ void Buffer::loadFromWAV(const std::string& filename)
         fileStream.read((char*)&fileSize, 4);
 
         fileStream.read((char*)identifier, 4); // "WAVE"
-        if(strncmp((char*)identifier, "WAVE", 4))
+        if(std::strncmp((char*)identifier, "WAVE", 4))
         {
             std::cerr << filename << " contains no WAVE section" << std::endl;
         }
 
         fileStream.read((char*)identifier, 4); // "fmt "
-        if(strncmp((char*)identifier, "fmt ", 4))
+        if(std::strncmp((char*)identifier, "fmt ", 4))
         {
             std::cerr << filename << ": expected fmt chunk not found" << std::endl;
         }
@@ -76,7 +77,7 @@ void Buffer::loadFromWAV(const std::string& filename)
 
         // skip over any additional chunks until we find the "data" chunk
         fileStream.read((char*)identifier, 4);
-        while(strncmp((char*)identifier, "data", 4))
+        while(std::strncmp((char*)identifier, "data", 4))
         {
             // no "data" chunk, read the size and skip ahead
             uint32_t chunkSize;
