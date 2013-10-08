@@ -3,6 +3,7 @@
 namespace audio
 {
 
+class Buffer;
 class Channel;
 struct SoundParams;
 
@@ -49,7 +50,10 @@ protected:
     //! Starts playing
     void play();
 
-protected:
+    //! Sets the currently playing buffer
+    void setBuffer(const Buffer& buffer);
+
+private:
     Channel* channel_;
     unsigned int pauseCounter_;
 };

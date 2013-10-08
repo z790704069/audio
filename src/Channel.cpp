@@ -61,9 +61,9 @@ bool Channel::isOccupied()
     }
 }
 
-std::shared_ptr<Sound> Channel::play(Playable& playable, const SoundParams& state)
+std::shared_ptr<Sound> Channel::play(Playable& playable, const SoundParams& params)
 {
-    resetSound(playable.play(*this, state).release());
+    resetSound(playable.play(*this, params).release());
     return sound_;
 }
 
@@ -87,7 +87,7 @@ void Channel::deallocateSource()
 
 void Channel::resetSound(Sound* sound)
 {
-    if(sound_)
+    if(sound_.get() && sound_.get() != sound)
         sound_->invalidate();
     sound_.reset(sound);
 }

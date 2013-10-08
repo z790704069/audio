@@ -10,6 +10,13 @@ namespace audio
 class Playable;
 class Sound;
 
+/*!
+ * \brief The SoundSystem class centralizes all responsibilities for audio
+ * playback, in particular:
+ *      * Context creation
+ *      * Channel management
+ *      * Streaming thread handling
+ */
 class SoundSystem
 {
 public:

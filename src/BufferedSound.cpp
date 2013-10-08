@@ -14,10 +14,4 @@ BufferedSound::BufferedSound(Channel* channel, const SoundParams& params, const 
     play();
 }
 
-void BufferedSound::setBuffer(const Buffer& buffer)
-{
-    if(isValid())
-        alSourcei(channel_->getSource(), AL_BUFFER, buffer.getName());
-}
-
 }

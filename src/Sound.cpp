@@ -1,6 +1,7 @@
 #include <audio/Sound.h>
-#include <audio/SoundParams.h>
+#include <audio/Buffer.h>
 #include <audio/Channel.h>
+#include <audio/SoundParams.h>
 
 #include <AL/al.h>
 
@@ -137,6 +138,13 @@ void Sound::setDirection(float x, float y, float z)
 {
     if(isValid())
         alSource3f(channel_->getSource(), AL_DIRECTION, x, y, z);
+}
+
+
+void Sound::setBuffer(const Buffer& buffer)
+{
+    if(isValid())
+        alSourcei(channel_->getSource(), AL_BUFFER, buffer.getName());
 }
 
 void Sound::pause()
