@@ -7,18 +7,21 @@
 namespace audio
 {
 
+/*!
+ * \brief Manages a set of Channel%s
+ */
 class ChannelBank
 {
 public:
     ChannelBank(size_t numChannels = 64);
 
-    //! Returns the total number of channels
+    //! Returns the total number of Channel%s
     inline size_t getNumChannels() const { return channels_.size(); }
 
-    //! Returns a pointer to a currently empty Channel or nullptr if there are no free channels
+    //! Returns a pointer to a currently empty Channel or \c nullptr if there are no free channels
     Channel* getFreeChannel();
 
-    //! Returns the number of currently free channels
+    //! Returns the number of currently free Channel%s
     unsigned int getNumFreeChannels();
 
 private:

@@ -12,18 +12,33 @@ class Sound;
 
 /*!
  * \brief The SoundSystem class centralizes all responsibilities for audio
- * playback, in particular:
- *      * Context creation
- *      * Channel management
- *      * Streaming thread handling
+ * playback.
+ *
+ * These responsibilities are, in particular:
+ *      - Context creation
+ *      - Channel management
+ *      - Streaming thread handling
  */
 class SoundSystem
 {
 public:
     SoundSystem();
 
-    std::shared_ptr<Sound> play(Playable& playable, const SoundParams& params = SoundParams());
+    /*!
+     * \brief           Plays something Playable on this SoundSystem.
+     * \param playable  Playable instance from which a Sound will be created
+     * \param params    optional initial parameters for the newly created Sound
+     * \return          a shared Sound handle. If you want to manipulate the
+     *                  Sound while it is playing, you should hold on to this
+     *                  handle. Otherwise, you can just throw it away.
+     */
+    std::shared_ptr<Sound> play(Playable& playable, const SoundParams& params = SoundParams{});
 
+    /*!
+     * \brief   Whether any Sound is currently playing.
+     * \return  true iff there is at least one Sound currently playing on this
+     *          SoundSystem.
+     */
     bool isBusy(); // TODO: debug feature ... remove this
 
 private:
