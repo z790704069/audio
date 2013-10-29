@@ -31,9 +31,9 @@ Buffer::~Buffer()
     alDeleteBuffers(1, &buffer_);
 }
 
-void Buffer::loadFromWAV(const std::string& filename)
+void Buffer::loadFromWAV(const std::string& _filename)
 {
-    std::ifstream fileStream{filename.c_str(), std::ios_base::in | std::ios_base::binary};
+    std::ifstream fileStream{_filename.c_str(), std::ios_base::in | std::ios_base::binary};
 
     if(fileStream.is_open() && fileStream.good())
     {
@@ -44,7 +44,7 @@ void Buffer::loadFromWAV(const std::string& filename)
         fileStream.read((char*)identifier, 4); // "RIFF"
         if(std::strncmp((char*)identifier, "RIFF", 4))
         {
-            std::cerr << filename << " is not a RIFF file" << std::endl;
+            std::cerr << _filename << " is not a RIFF file" << std::endl;
         }
 
         fileStream.read((char*)&fileSize, 4);
@@ -52,13 +52,13 @@ void Buffer::loadFromWAV(const std::string& filename)
         fileStream.read((char*)identifier, 4); // "WAVE"
         if(std::strncmp((char*)identifier, "WAVE", 4))
         {
-            std::cerr << filename << " contains no WAVE section" << std::endl;
+            std::cerr << _filename << " contains no WAVE section" << std::endl;
         }
 
         fileStream.read((char*)identifier, 4); // "fmt "
         if(std::strncmp((char*)identifier, "fmt ", 4))
         {
-            std::cerr << filename << ": expected fmt chunk not found" << std::endl;
+            std::cerr << _filename << ": expected fmt chunk not found" << std::endl;
         }
 
         fileStream.read((char*)&formatLength, 4);
@@ -87,7 +87,7 @@ void Buffer::loadFromWAV(const std::string& filename)
             // read the next chunk identifier
             if(!fileStream.good())
             {
-                std::cerr << filename << ": reachend end of file without finding data chunk" << std::endl;
+                std::cerr << _filename << ": reachend end of file without finding data chunk" << std::endl;
             }
             else
             {
@@ -100,7 +100,7 @@ void Buffer::loadFromWAV(const std::string& filename)
 
         if(formatTag != 1)
         {
-            std::cerr << filename << " contains non-PCM WAVE data" << std::endl;
+            std::cerr << _filename << " contains non-PCM WAVE data" << std::endl;
         }
 
         ALenum alFormat = 0;
@@ -110,7 +110,7 @@ void Buffer::loadFromWAV(const std::string& filename)
         if(bitsPerSample == 16 && channels == 2) alFormat = AL_FORMAT_STEREO16;
         if(alFormat == 0)
         {
-            std::cerr << filename << ": audio format not supported by OpenAL: " << bitsPerSample << " bits/sample, " << channels << " channel(s)" << std::endl;
+            std::cerr << _filename << ": audio format not supported by OpenAL: " << bitsPerSample << " bits/sample, " << channels << " channel(s)" << std::endl;
         }
 
         // Read the raw audio data and upload it to the OpenAL buffer
@@ -133,13 +133,13 @@ void Buffer::loadFromWAV(const std::string& filename)
     }
     else
     {
-        std::cerr << "Could not open " << filename << std::endl;
+        std::cerr << "Could not open " << _filename << std::endl;
     }
 }
 
-std::unique_ptr<Sound> Buffer::play(Channel& channel, const SoundParams& params)
+std::unique_ptr<Sound> Buffer::play(Channel& _channel, const SoundParams& _params)
 {
-    return make_unique<BufferedSound>(&channel, params, *this);
+    return make_unique<BufferedSound>(&_channel, _params, *this);
 }
 
 }

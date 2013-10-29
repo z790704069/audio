@@ -5,13 +5,13 @@ namespace audio
 {
 
 // Functor for picking out free channels
-bool isFree(Channel& channel)
+bool isFree(const Channel& channel)
 {
     return !channel.isOccupied();
 }
 
-ChannelBank::ChannelBank(size_t numChannels) :
-    channels_{numChannels}
+ChannelBank::ChannelBank(size_t _numChannels) :
+    channels_{_numChannels}
 {
 }
 

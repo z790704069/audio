@@ -14,7 +14,7 @@ class Buffer;
 class BufferedSound : public Sound
 {
 public:
-    BufferedSound(Channel* channel, const SoundParams& params, const Buffer& buffer);
+    BufferedSound(Channel* _channel, const SoundParams& _params, const Buffer& _buffer);
 };
 
 }

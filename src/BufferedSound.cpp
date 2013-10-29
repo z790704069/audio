@@ -7,10 +7,10 @@
 namespace audio
 {
 
-BufferedSound::BufferedSound(Channel* channel, const SoundParams& params, const Buffer& buffer) :
-    Sound{channel, params}
+BufferedSound::BufferedSound(Channel* _channel, const SoundParams& _params, const Buffer& _buffer) :
+    Sound{_channel, _params}
 {
-    setBuffer(buffer);
+    setBuffer(_buffer);
     play();
 }
 

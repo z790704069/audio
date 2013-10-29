@@ -7,7 +7,7 @@
 // An implementation will likely be included in C++14, making this obsolete
 
 template<typename T, typename ...Args>
-std::unique_ptr<T> make_unique(Args&& ...args)
+std::unique_ptr<T> make_unique(Args&& ..._args)
 {
-    return std::unique_ptr<T>{new T{std::forward<Args>(args)...}};
+    return std::unique_ptr<T>{new T{std::forward<Args>(_args)...}};
 }

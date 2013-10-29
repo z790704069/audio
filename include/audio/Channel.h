@@ -19,14 +19,14 @@ class Channel
     friend class Sound;
 
 public:
-    Channel();                                    // ctor
-    Channel(const Channel&) = delete;             // no copy ctor
-    Channel(Channel&& other) noexcept;            // move ctor
+    Channel();                                     // ctor
+    Channel(const Channel&) = delete;              // no copy ctor
+    Channel(Channel&& _other) noexcept;            // move ctor
 
-    Channel& operator=(const Channel&) = delete;  // no copy-assignment
-    Channel& operator=(Channel&& other) noexcept; // move assignment
+    Channel& operator=(const Channel&) = delete;   // no copy-assignment
+    Channel& operator=(Channel&& _other) noexcept; // move assignment
 
-    ~Channel();                                   // dtor
+    ~Channel();                                    // dtor
 
     //! Whether a sound is currently registered for this channel
     bool isOccupied() const;
@@ -35,7 +35,7 @@ public:
     std::shared_ptr<Sound> getSound() const;
 
     //! Starts playing a Playable object on this channel
-    std::shared_ptr<Sound> play(Playable& playable, const SoundParams& params);
+    std::shared_ptr<Sound> play(Playable& _playable, const SoundParams& _params);
 
 private:
     //! The name of the OpenAL source used by this channel

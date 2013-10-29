@@ -11,14 +11,14 @@ namespace audio
 class Context
 {
 public:
-    Context();                                    // ctor
-    Context(const Context&) = delete;             // no copy ctor
-    Context(Context&& other) noexcept;            // move ctor
+    Context();                                     // ctor
+    Context(const Context&) = delete;              // no copy ctor
+    Context(Context&& _other) noexcept;            // move ctor
 
-    Context& operator=(const Context&) = delete;  // no copy-assignment
-    Context& operator=(Context&& other) noexcept; // move assignment
+    Context& operator=(const Context&) = delete;   // no copy-assignment
+    Context& operator=(Context&& _other) noexcept; // move assignment
 
-    ~Context();                                   // dtor
+    ~Context();                                    // dtor
 
     //! The name of the currently used output device
     std::string getDeviceSpecifier() const;

@@ -10,141 +10,141 @@
 namespace audio
 {
 
-Sound::Sound(Channel* channel, const SoundParams& params) :
-    channel_{channel},
+Sound::Sound(Channel* _channel, const SoundParams& _params) :
+    channel_{_channel},
     pauseCounter_{0}
 {
-    setParams(params);
+    setParams(_params);
 }
 
-void Sound::setParams(const SoundParams& params)
+void Sound::setParams(const SoundParams& _params)
 {
     if(isValid())
     {
         auto source = channel_->getSource();
 
-        alSourcef(source, AL_GAIN,               params.gain_);
-        alSourcef(source, AL_PITCH,              params.pitch_);
-        alSourcef(source, AL_SEC_OFFSET,         params.timeOffset_);
-        alSourcef(source, AL_MIN_GAIN,           params.minGain_);
-        alSourcef(source, AL_MAX_GAIN,           params.maxGain_);
-        alSourcef(source, AL_REFERENCE_DISTANCE, params.referenceDistance_);
-        alSourcef(source, AL_ROLLOFF_FACTOR,     params.rolloffFactor_);
-        alSourcef(source, AL_MAX_DISTANCE,       params.maxDistance_);
-        alSourcef(source, AL_CONE_INNER_ANGLE,   params.coneInnerAngle_);
-        alSourcef(source, AL_CONE_OUTER_ANGLE,   params.coneOuterAngle_);
-        alSourcef(source, AL_CONE_OUTER_GAIN,    params.coneOuterGain_);
+        alSourcef(source, AL_GAIN,               _params.gain_);
+        alSourcef(source, AL_PITCH,              _params.pitch_);
+        alSourcef(source, AL_SEC_OFFSET,         _params.timeOffset_);
+        alSourcef(source, AL_MIN_GAIN,           _params.minGain_);
+        alSourcef(source, AL_MAX_GAIN,           _params.maxGain_);
+        alSourcef(source, AL_REFERENCE_DISTANCE, _params.referenceDistance_);
+        alSourcef(source, AL_ROLLOFF_FACTOR,     _params.rolloffFactor_);
+        alSourcef(source, AL_MAX_DISTANCE,       _params.maxDistance_);
+        alSourcef(source, AL_CONE_INNER_ANGLE,   _params.coneInnerAngle_);
+        alSourcef(source, AL_CONE_OUTER_ANGLE,   _params.coneOuterAngle_);
+        alSourcef(source, AL_CONE_OUTER_GAIN,    _params.coneOuterGain_);
 
-        alSourcei(source, AL_LOOPING,            params.looping_ ? AL_TRUE : AL_FALSE);
-        alSourcei(source, AL_SOURCE_RELATIVE,    params.relative_ ? AL_TRUE : AL_FALSE);
+        alSourcei(source, AL_LOOPING,            _params.looping_ ? AL_TRUE : AL_FALSE);
+        alSourcei(source, AL_SOURCE_RELATIVE,    _params.relative_ ? AL_TRUE : AL_FALSE);
 
-        alSource3f(source, AL_POSITION,  params.positionX_,  params.positionY_,  params.positionZ_);
-        alSource3f(source, AL_VELOCITY,  params.velocityX_,  params.velocityY_,  params.velocityZ_);
-        alSource3f(source, AL_DIRECTION, params.directionX_, params.directionY_, params.directionZ_);
+        alSource3f(source, AL_POSITION,  _params.positionX_,  _params.positionY_,  _params.positionZ_);
+        alSource3f(source, AL_VELOCITY,  _params.velocityX_,  _params.velocityY_,  _params.velocityZ_);
+        alSource3f(source, AL_DIRECTION, _params.directionX_, _params.directionY_, _params.directionZ_);
     }
 }
 
-void Sound::setGain(float gain)
+void Sound::setGain(float _gain)
 {
     if(isValid())
-        alSourcef(channel_->getSource(), AL_GAIN, gain);
+        alSourcef(channel_->getSource(), AL_GAIN, _gain);
 }
 
-void Sound::setPitch(float pitch)
+void Sound::setPitch(float _pitch)
 {
     if(isValid())
-        alSourcef(channel_->getSource(), AL_PITCH, pitch);
+        alSourcef(channel_->getSource(), AL_PITCH, _pitch);
 }
 
-void Sound::setTimeOffset(float timeOffset)
+void Sound::setTimeOffset(float _timeOffset)
 {
     if(isValid())
-        alSourcef(channel_->getSource(), AL_SEC_OFFSET, timeOffset);
+        alSourcef(channel_->getSource(), AL_SEC_OFFSET, _timeOffset);
 }
 
-void Sound::setLooping(bool looping)
+void Sound::setLooping(bool _looping)
 {
     if(isValid())
-        alSourcei(channel_->getSource(), AL_LOOPING, looping ? AL_TRUE : AL_FALSE);
+        alSourcei(channel_->getSource(), AL_LOOPING, _looping ? AL_TRUE : AL_FALSE);
 }
 
-void Sound::setRelative(bool relative)
+void Sound::setRelative(bool _relative)
 {
     if(isValid())
-        alSourcei(channel_->getSource(), AL_SOURCE_RELATIVE, relative ? AL_TRUE : AL_FALSE);
+        alSourcei(channel_->getSource(), AL_SOURCE_RELATIVE, _relative ? AL_TRUE : AL_FALSE);
 }
 
-void Sound::setMinGain(float minGain)
+void Sound::setMinGain(float _minGain)
 {
     if(isValid())
-        alSourcef(channel_->getSource(), AL_MIN_GAIN, minGain);
+        alSourcef(channel_->getSource(), AL_MIN_GAIN, _minGain);
 }
 
-void Sound::setMaxGain(float maxGain)
+void Sound::setMaxGain(float _maxGain)
 {
     if(isValid())
-        alSourcef(channel_->getSource(), AL_MAX_GAIN, maxGain);
+        alSourcef(channel_->getSource(), AL_MAX_GAIN, _maxGain);
 }
 
-void Sound::setReferenceDistance(float referenceDistance)
+void Sound::setReferenceDistance(float _referenceDistance)
 {
     if(isValid())
-        alSourcef(channel_->getSource(), AL_REFERENCE_DISTANCE, referenceDistance);
+        alSourcef(channel_->getSource(), AL_REFERENCE_DISTANCE, _referenceDistance);
 }
 
-void Sound::setRolloffFactor(float rolloffFactor)
+void Sound::setRolloffFactor(float _rolloffFactor)
 {
     if(isValid())
-        alSourcef(channel_->getSource(), AL_ROLLOFF_FACTOR, rolloffFactor);
+        alSourcef(channel_->getSource(), AL_ROLLOFF_FACTOR, _rolloffFactor);
 }
 
-void Sound::setMaxDistance(float maxDistance)
+void Sound::setMaxDistance(float _maxDistance)
 {
     if(isValid())
-        alSourcef(channel_->getSource(), AL_MAX_DISTANCE, maxDistance);
+        alSourcef(channel_->getSource(), AL_MAX_DISTANCE, _maxDistance);
 }
 
-void Sound::setConeInnerAngle(float coneInnerAngle)
+void Sound::setConeInnerAngle(float _coneInnerAngle)
 {
     if(isValid())
-        alSourcef(channel_->getSource(), AL_CONE_INNER_ANGLE, coneInnerAngle);
+        alSourcef(channel_->getSource(), AL_CONE_INNER_ANGLE, _coneInnerAngle);
 }
 
-void Sound::setConeOuterAngle(float coneOuterAngle)
+void Sound::setConeOuterAngle(float _coneOuterAngle)
 {
     if(isValid())
-        alSourcef(channel_->getSource(), AL_CONE_OUTER_ANGLE, coneOuterAngle);
+        alSourcef(channel_->getSource(), AL_CONE_OUTER_ANGLE, _coneOuterAngle);
 }
 
-void Sound::setConeOuterGain(float coneOuterGain)
+void Sound::setConeOuterGain(float _coneOuterGain)
 {
     if(isValid())
-        alSourcef(channel_->getSource(), AL_CONE_OUTER_GAIN, coneOuterGain);
+        alSourcef(channel_->getSource(), AL_CONE_OUTER_GAIN, _coneOuterGain);
 }
 
-void Sound::setPosition(float x, float y, float z)
+void Sound::setPosition(float _x, float _y, float _z)
 {
     if(isValid())
-        alSource3f(channel_->getSource(), AL_POSITION, x, y, z);
+        alSource3f(channel_->getSource(), AL_POSITION, _x, _y, _z);
 }
 
-void Sound::setVelocity(float x, float y, float z)
+void Sound::setVelocity(float _x, float _y, float _z)
 {
     if(isValid())
-        alSource3f(channel_->getSource(), AL_VELOCITY, x, y, z);
+        alSource3f(channel_->getSource(), AL_VELOCITY, _x, _y, _z);
 }
 
-void Sound::setDirection(float x, float y, float z)
+void Sound::setDirection(float _x, float _y, float _z)
 {
     if(isValid())
-        alSource3f(channel_->getSource(), AL_DIRECTION, x, y, z);
+        alSource3f(channel_->getSource(), AL_DIRECTION, _x, _y, _z);
 }
 
 
-void Sound::setBuffer(const Buffer& buffer)
+void Sound::setBuffer(const Buffer& _buffer)
 {
     if(isValid())
-        alSourcei(channel_->getSource(), AL_BUFFER, buffer.getName());
+        alSourcei(channel_->getSource(), AL_BUFFER, _buffer.getName());
 }
 
 void Sound::pause()

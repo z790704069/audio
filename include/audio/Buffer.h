@@ -18,9 +18,9 @@ public:
     Buffer();
     virtual ~Buffer();
 
-    void loadFromWAV(const std::string& filename); // TODO: move to audio::data::WAVStream
+    void loadFromWAV(const std::string& _filename); // TODO: move to audio::data::WAVStream
 
-    virtual std::unique_ptr<Sound> play(Channel& channel, const SoundParams& params);
+    virtual std::unique_ptr<Sound> play(Channel& _channel, const SoundParams& _params);
 
     inline ALuint getName() const { return buffer_; } // TODO: hide?
 

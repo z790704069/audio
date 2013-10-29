@@ -13,20 +13,20 @@ Context::Context() :
     open();
 }
 
-Context::Context(Context&& other) noexcept :
+Context::Context(Context&& _other) noexcept :
     device_{nullptr},
     context_{nullptr}
 {
-    *this = std::forward<Context>(other); // call move assignment
+    *this = std::forward<Context>(_other); // call move assignment
 }
 
-Context& Context::operator=(Context&& other) noexcept
+Context& Context::operator=(Context&& _other) noexcept
 {
     close();
-    device_ = other.device_;
-    context_ = other.context_;
-    other.device_ = nullptr;
-    other.context_ = nullptr;
+    device_ = _other.device_;
+    context_ = _other.context_;
+    _other.device_ = nullptr;
+    _other.context_ = nullptr;
     return *this;
 }
 

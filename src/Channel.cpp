@@ -12,22 +12,22 @@ Channel::Channel() :
     allocateSource();
 }
 
-Channel::Channel(Channel&& other) noexcept :
+Channel::Channel(Channel&& _other) noexcept :
     sourceAllocated_{false},
     sound_{nullptr}
 {
-    *this = std::forward<Channel>(other); // call move assignment
+    *this = std::forward<Channel>(_other); // call move assignment
 }
 
-Channel& Channel::operator=(Channel&& other) noexcept
+Channel& Channel::operator=(Channel&& _other) noexcept
 {
     deallocateSource();
 
-    source_ = other.source_;
-    sourceAllocated_ = other.sourceAllocated_;
-    sound_ = std::move(other.sound_);
+    source_ = _other.source_;
+    sourceAllocated_ = _other.sourceAllocated_;
+    sound_ = std::move(_other.sound_);
 
-    other.sourceAllocated_ = false;
+    _other.sourceAllocated_ = false;
 
     return *this;
 }
@@ -50,6 +50,12 @@ std::shared_ptr<Sound> Channel::getSound() const
     return sound_;
 }
 
+std::shared_ptr<Sound> Channel::play(Playable& _playable, const SoundParams& _params)
+{
+    resetSound(_playable.play(*this, _params).release());
+    return sound_;
+}
+
 void Channel::updateSound() const
 {
     if(sound_)
@@ -60,12 +66,6 @@ void Channel::updateSound() const
         if(state == AL_INITIAL || state == AL_STOPPED)
             resetSound();
     }
-}
-
-std::shared_ptr<Sound> Channel::play(Playable& playable, const SoundParams& params)
-{
-    resetSound(playable.play(*this, params).release());
-    return sound_;
 }
 
 void Channel::allocateSource()
@@ -86,11 +86,11 @@ void Channel::deallocateSource()
     }
 }
 
-void Channel::resetSound(Sound* sound)
+void Channel::resetSound(Sound* _sound) const
 {
-    if(sound_.get() && sound_.get() != sound)
+    if(sound_.get() && sound_.get() != _sound)
         sound_->invalidate();
-    sound_.reset(sound);
+    sound_.reset(_sound);
 }
 
 }

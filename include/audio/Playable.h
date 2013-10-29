@@ -16,7 +16,7 @@ class Playable
 public:
     virtual ~Playable() {}
 
-    virtual std::unique_ptr<Sound> play(Channel& channel, const SoundParams& state) = 0;
+    virtual std::unique_ptr<Sound> play(Channel& _channel, const SoundParams& _state) = 0;
 };
 
 }

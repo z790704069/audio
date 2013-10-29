@@ -19,10 +19,10 @@ enum Channels
 
 struct Format
 {
-    Format(Bitrate bitrate, Channels channels, unsigned int frequency) :
-        bitrate_(bitrate),
-        channels_(channels),
-        frequency_(frequency)
+    Format(Bitrate _bitrate, Channels _channels, unsigned int _frequency) :
+        bitrate_(_bitrate),
+        channels_(_channels),
+        frequency_(_frequency)
     {
     }
 

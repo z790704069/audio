@@ -13,12 +13,12 @@ SoundSystem::SoundSystem() :
 {
 }
 
-std::shared_ptr<Sound> SoundSystem::play(Playable& playable, const SoundParams& params)
+std::shared_ptr<Sound> SoundSystem::play(Playable& _playable, const SoundParams& _params)
 {
     Channel* freeChannel = channelBank_.getFreeChannel();
     if(freeChannel)
     {
-        return freeChannel->play(playable, params);
+        return freeChannel->play(_playable, _params);
     }
     else
     {

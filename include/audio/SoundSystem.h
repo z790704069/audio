@@ -26,13 +26,13 @@ public:
 
     /*!
      * \brief           Plays something Playable on this SoundSystem.
-     * \param playable  Playable instance from which a Sound will be created
-     * \param params    optional initial parameters for the newly created Sound
+     * \param _playable Playable instance from which a Sound will be created
+     * \param _params   optional initial parameters for the newly created Sound
      * \return          a shared Sound handle. If you want to manipulate the
      *                  Sound while it is playing, you should hold on to this
      *                  handle. Otherwise, you can just throw it away.
      */
-    std::shared_ptr<Sound> play(Playable& playable, const SoundParams& params = SoundParams{});
+    std::shared_ptr<Sound> play(Playable& _playable, const SoundParams& _params = SoundParams{});
 
     /*!
      * \brief   Whether any Sound is currently playing.

@@ -14,27 +14,27 @@ class Sound
     friend class Channel;
 
 protected:
-    Sound(Channel* channel, const SoundParams& params); // only callable by class Playable
+    Sound(Channel* _channel, const SoundParams& _params); // only callable by class Playable
 
 public:
-    void setParams(const SoundParams& params);
+    void setParams(const SoundParams& _params);
 
-    void setGain(float gain);
-    void setPitch(float pitch);
-    void setTimeOffset(float timeOffset);
-    void setLooping(bool looping);
-    void setRelative(bool relative);
-    void setMinGain(float minGain);
-    void setMaxGain(float maxGain);
-    void setReferenceDistance(float referenceDistance);
-    void setRolloffFactor(float rolloffFactor);
-    void setMaxDistance(float maxDistance);
-    void setConeInnerAngle(float coneInnerAngle);
-    void setConeOuterAngle(float coneOuterAngle);
-    void setConeOuterGain(float coneOuterGain);
-    void setPosition(float x, float y, float z);
-    void setVelocity(float x, float y, float z);
-    void setDirection(float x, float y, float z);
+    void setGain(float _gain);
+    void setPitch(float _pitch);
+    void setTimeOffset(float _timeOffset);
+    void setLooping(bool _looping);
+    void setRelative(bool _relative);
+    void setMinGain(float _minGain);
+    void setMaxGain(float _maxGain);
+    void setReferenceDistance(float _referenceDistance);
+    void setRolloffFactor(float _rolloffFactor);
+    void setMaxDistance(float _maxDistance);
+    void setConeInnerAngle(float _coneInnerAngle);
+    void setConeOuterAngle(float _coneOuterAngle);
+    void setConeOuterGain(float _coneOuterGain);
+    void setPosition(float _x, float _y, float _z);
+    void setVelocity(float _x, float _y, float _z);
+    void setDirection(float _x, float _y, float _z);
 
     void pause();
     void resume();
@@ -51,7 +51,7 @@ protected:
     void play();
 
     //! Sets the currently playing buffer
-    void setBuffer(const Buffer& buffer);
+    void setBuffer(const Buffer& _buffer);
 
 private:
     Channel* channel_;
