@@ -29,10 +29,10 @@ public:
     ~Channel();                                   // dtor
 
     //! Whether a sound is currently registered for this channel
-    bool isOccupied(); // TODO: should this be made const?
+    bool isOccupied() const;
 
     //! The sound currently registered for this channel
-    std::shared_ptr<Sound> getSound() { return sound_; }
+    std::shared_ptr<Sound> getSound() const;
 
     //! Starts playing a Playable object on this channel
     std::shared_ptr<Sound> play(Playable& playable, const SoundParams& params);
@@ -41,11 +41,13 @@ private:
     //! The name of the OpenAL source used by this channel
     ALuint getSource() const { return source_; }
 
+    void updateSound() const;
+
     void allocateSource();
     void deallocateSource();
 
     //! Resets sound_ to a new target and invalidates the previous target
-    void resetSound(Sound* sound = nullptr);
+    void resetSound(Sound* _sound = nullptr) const;
 
 private:
     ALuint source_;
@@ -54,7 +56,7 @@ private:
     //! A pointer to the sound currently playing on this Channel. This pointer
     //! is shared with clients who want to manipulate the currently playing
     //! sound.
-    std::shared_ptr<Sound> sound_;
+    mutable std::shared_ptr<Sound> sound_;
 };
 
 }

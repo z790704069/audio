@@ -22,7 +22,7 @@ public:
     Channel* getFreeChannel();
 
     //! Returns the number of currently free Channel%s
-    unsigned int getNumFreeChannels();
+    unsigned int getNumFreeChannels() const;
 
 private:
     std::vector<Channel> channels_;

@@ -24,7 +24,7 @@ Channel* ChannelBank::getFreeChannel()
         return &(*it);
 }
 
-unsigned int ChannelBank::getNumFreeChannels()
+unsigned int ChannelBank::getNumFreeChannels() const
 {
     return std::count_if(std::begin(channels_), std::end(channels_), isFree);
 }

@@ -38,7 +38,19 @@ Channel::~Channel()
     deallocateSource();
 }
 
-bool Channel::isOccupied()
+bool Channel::isOccupied() const
+{
+    updateSound();
+    return sound_ != nullptr;
+}
+
+std::shared_ptr<Sound> Channel::getSound() const
+{
+    updateSound();
+    return sound_;
+}
+
+void Channel::updateSound() const
 {
     if(sound_)
     {
@@ -46,18 +58,7 @@ bool Channel::isOccupied()
         ALint state;
         alGetSourcei(source_, AL_SOURCE_STATE, &state);
         if(state == AL_INITIAL || state == AL_STOPPED)
-        {
             resetSound();
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-    else
-    {
-        return false;
     }
 }
 
