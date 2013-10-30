@@ -36,21 +36,27 @@ public:
     void setVelocity(float _x, float _y, float _z);
     void setDirection(float _x, float _y, float _z);
 
+    /*!
+     * \brief Pauses the Sound.
+     * \note When calling pause multiple times, resume must be called the same
+     * number of times in order to actually resume playback.
+     * \note
+     */
     void pause();
     void resume();
 
-    //! Whether the handle is still actively controlling its Channel
+    //! \brief Whether the handle is still actively controlling its Channel
     bool isValid() const;
 
 protected:
-    //! Invalidates the source so it no longer controls a Channel. All future
-    //! calls that normally manipulate playback will become no-ops.
+    //! \brief Invalidates the source so it no longer controls a Channel. All
+    //! future calls that would normally manipulate playback will become no-ops.
     void invalidate();
 
-    //! Starts playing
+    //! \brief Starts playing
     void play();
 
-    //! Sets the currently playing buffer
+    //! \brief Sets the currently playing buffer
     void setBuffer(const Buffer& _buffer);
 
 private:
