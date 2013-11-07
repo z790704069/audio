@@ -32,14 +32,14 @@ public:
      *                  Sound while it is playing, you should hold on to this
      *                  handle. Otherwise, you can just throw it away.
      */
-    std::shared_ptr<Sound> play(Playable& _playable, const SoundParams& _params = SoundParams{});
+    auto play(Playable& _playable, const SoundParams& _params = SoundParams{}) -> std::shared_ptr<Sound>;
 
     /*!
      * \brief   Whether any Sound is currently playing.
      * \return  true iff there is at least one Sound currently playing on this
      *          SoundSystem.
      */
-    bool isBusy(); // TODO: debug feature ... remove this
+    auto isBusy() -> bool; // TODO: debug feature ... remove this
 
 private:
     Context context_;

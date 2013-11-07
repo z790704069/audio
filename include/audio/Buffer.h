@@ -2,7 +2,7 @@
 
 #include <audio/Playable.h>
 
-#include <AL/al.h>
+#include <AL/al.h> // TODO: try to not expose this header
 
 #include <string>
 #include <memory>
@@ -18,11 +18,11 @@ public:
     Buffer();
     virtual ~Buffer();
 
-    void loadFromWAV(const std::string& _filename); // TODO: move to audio::data::WAVStream
+    auto loadFromWAV(const std::string& _filename) -> void; // TODO: move to audio::data::WAVStream
 
-    virtual std::unique_ptr<Sound> play(Channel& _channel, const SoundParams& _params);
+    virtual auto play(Channel& _channel, const SoundParams& _params) -> std::unique_ptr<Sound> override;
 
-    inline ALuint getName() const { return buffer_; } // TODO: hide?
+    inline auto getName() const -> ALuint { return buffer_; } // TODO: hide?
 
 private:
     ALuint buffer_;

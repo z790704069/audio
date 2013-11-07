@@ -17,24 +17,24 @@ protected:
     Sound(Channel* _channel, const SoundParams& _params); // only callable by class Playable
 
 public:
-    void setParams(const SoundParams& _params);
+    auto setParams(const SoundParams& _params) -> void;
 
-    void setGain(float _gain);
-    void setPitch(float _pitch);
-    void setTimeOffset(float _timeOffset);
-    void setLooping(bool _looping);
-    void setRelative(bool _relative);
-    void setMinGain(float _minGain);
-    void setMaxGain(float _maxGain);
-    void setReferenceDistance(float _referenceDistance);
-    void setRolloffFactor(float _rolloffFactor);
-    void setMaxDistance(float _maxDistance);
-    void setConeInnerAngle(float _coneInnerAngle);
-    void setConeOuterAngle(float _coneOuterAngle);
-    void setConeOuterGain(float _coneOuterGain);
-    void setPosition(float _x, float _y, float _z);
-    void setVelocity(float _x, float _y, float _z);
-    void setDirection(float _x, float _y, float _z);
+    auto setGain(float _gain) -> void;
+    auto setPitch(float _pitch) -> void;
+    auto setTimeOffset(float _timeOffset) -> void;
+    auto setLooping(bool _looping) -> void;
+    auto setRelative(bool _relative) -> void;
+    auto setMinGain(float _minGain) -> void;
+    auto setMaxGain(float _maxGain) -> void;
+    auto setReferenceDistance(float _referenceDistance) -> void;
+    auto setRolloffFactor(float _rolloffFactor) -> void;
+    auto setMaxDistance(float _maxDistance) -> void;
+    auto setConeInnerAngle(float _coneInnerAngle) -> void;
+    auto setConeOuterAngle(float _coneOuterAngle) -> void;
+    auto setConeOuterGain(float _coneOuterGain) -> void;
+    auto setPosition(float _x, float _y, float _z) -> void;
+    auto setVelocity(float _x, float _y, float _z) -> void;
+    auto setDirection(float _x, float _y, float _z) -> void;
 
     /*!
      * \brief Pauses the Sound.
@@ -42,22 +42,22 @@ public:
      * number of times in order to actually resume playback.
      * \note
      */
-    void pause();
-    void resume();
+    auto pause() -> void;
+    auto resume() -> void;
 
     //! \brief Whether the handle is still actively controlling its Channel
-    bool isValid() const;
+    auto isValid() const -> bool;
 
 protected:
     //! \brief Invalidates the source so it no longer controls a Channel. All
     //! future calls that would normally manipulate playback will become no-ops.
-    void invalidate();
+    auto invalidate() -> void;
 
     //! \brief Starts playing
-    void play();
+    auto play() -> void;
 
     //! \brief Sets the currently playing buffer
-    void setBuffer(const Buffer& _buffer);
+    auto setBuffer(const Buffer& _buffer) -> void;
 
 private:
     Channel* channel_;

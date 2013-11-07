@@ -1,6 +1,6 @@
 #pragma once
 
-#include <AL/alc.h>
+#include <AL/alc.h> // TODO: try to not expose this header
 #include <string>
 
 namespace audio
@@ -21,11 +21,11 @@ public:
     ~Context();                                    // dtor
 
     //! The name of the currently used output device
-    std::string getDeviceSpecifier() const;
+    auto getDeviceSpecifier() const -> std::string;
     //! The major version number of the current OpenAL context
-    int getMajorVersion() const;
+    auto getMajorVersion() const -> int;
     //! The minor version number of the current OpenAL context
-    int getMinorVersion() const;
+    auto getMinorVersion() const -> int;
 
 private:
     void open();

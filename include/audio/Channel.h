@@ -1,7 +1,7 @@
 #pragma once
 
 #include <audio/Sound.h>
-#include <AL/al.h>
+#include <AL/al.h> // TODO: try to not expose this header
 #include <memory>
 
 namespace audio
@@ -22,32 +22,31 @@ public:
     Channel();                                     // ctor
     Channel(const Channel&) = delete;              // no copy ctor
     Channel(Channel&& _other) noexcept;            // move ctor
-
-    Channel& operator=(const Channel&) = delete;   // no copy-assignment
-    Channel& operator=(Channel&& _other) noexcept; // move assignment
-
     ~Channel();                                    // dtor
 
+    auto operator=(const Channel&) -> Channel& = delete;   // no copy-assignment
+    auto operator=(Channel&& _other) noexcept -> Channel&; // move assignment
+
     //! Whether a sound is currently registered for this channel
-    bool isOccupied() const;
+    auto isOccupied() const -> bool;
 
     //! The sound currently registered for this channel
-    std::shared_ptr<Sound> getSound() const;
+    auto getSound() const -> std::shared_ptr<Sound>;
 
     //! Starts playing a Playable object on this channel
-    std::shared_ptr<Sound> play(Playable& _playable, const SoundParams& _params);
+    auto play(Playable& _playable, const SoundParams& _params) -> std::shared_ptr<Sound>;
 
 private:
     //! The name of the OpenAL source used by this channel
-    ALuint getSource() const { return source_; }
+    auto getSource() const -> ALuint { return source_; }
 
-    void updateSound() const;
+    auto updateSound() const -> void;
 
-    void allocateSource();
-    void deallocateSource();
+    auto allocateSource() -> void;
+    auto deallocateSource() -> void;
 
     //! Resets sound_ to a new target and invalidates the previous target
-    void resetSound(Sound* _sound = nullptr) const;
+    auto resetSound(Sound* _sound = nullptr) const -> void;
 
 private:
     ALuint source_;

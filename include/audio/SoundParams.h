@@ -8,23 +8,23 @@ struct SoundParams
     SoundParams();
 
     // named-parameter setters
-    inline SoundParams& gain             (float _gain)              { gain_ = _gain;                           return *this; }
-    inline SoundParams& pitch            (float _pitch)             { pitch_ = _pitch;                         return *this; }
-    inline SoundParams& timeOffset       (float _timeOffset)        { timeOffset_ = _timeOffset;               return *this; }
-    inline SoundParams& looping          (bool _looping)            { looping_ = _looping;                     return *this; }
-    inline SoundParams& relative         (bool _relative)           { relative_ = _relative;                   return *this; }
-    inline SoundParams& minGain          (float _minGain)           { minGain_ = _minGain;                     return *this; }
-    inline SoundParams& maxGain          (float _maxGain)           { maxGain_ = _maxGain;                     return *this; }
-    inline SoundParams& referenceDistance(float _referenceDistance) { referenceDistance_ = _referenceDistance; return *this; }
-    inline SoundParams& rolloffFactor    (float _rolloffFactor)     { rolloffFactor_ = _rolloffFactor;         return *this; }
-    inline SoundParams& maxDistance      (float _maxDistance)       { maxDistance_ = _maxDistance;             return *this; }
-    inline SoundParams& coneInnerAngle   (float _coneInnerAngle)    { coneInnerAngle_ = _coneInnerAngle;       return *this; }
-    inline SoundParams& coneOuterAngle   (float _coneOuterAngle)    { coneOuterAngle_ = _coneOuterAngle;       return *this; }
-    inline SoundParams& coneOuterGain    (float _coneOuterGain)     { coneOuterGain_ = _coneOuterGain;         return *this; }
+    inline auto gain             (float _gain)              -> SoundParams& {  gain_ = _gain;                           return *this; }
+    inline auto pitch            (float _pitch)             -> SoundParams& {  pitch_ = _pitch;                         return *this; }
+    inline auto timeOffset       (float _timeOffset)        -> SoundParams& {  timeOffset_ = _timeOffset;               return *this; }
+    inline auto looping          (bool _looping)            -> SoundParams& {  looping_ = _looping;                     return *this; }
+    inline auto relative         (bool _relative)           -> SoundParams& {  relative_ = _relative;                   return *this; }
+    inline auto minGain          (float _minGain)           -> SoundParams& {  minGain_ = _minGain;                     return *this; }
+    inline auto maxGain          (float _maxGain)           -> SoundParams& {  maxGain_ = _maxGain;                     return *this; }
+    inline auto referenceDistance(float _referenceDistance) -> SoundParams& {  referenceDistance_ = _referenceDistance; return *this; }
+    inline auto rolloffFactor    (float _rolloffFactor)     -> SoundParams& {  rolloffFactor_ = _rolloffFactor;         return *this; }
+    inline auto maxDistance      (float _maxDistance)       -> SoundParams& {  maxDistance_ = _maxDistance;             return *this; }
+    inline auto coneInnerAngle   (float _coneInnerAngle)    -> SoundParams& {  coneInnerAngle_ = _coneInnerAngle;       return *this; }
+    inline auto coneOuterAngle   (float _coneOuterAngle)    -> SoundParams& {  coneOuterAngle_ = _coneOuterAngle;       return *this; }
+    inline auto coneOuterGain    (float _coneOuterGain)     -> SoundParams& {  coneOuterGain_ = _coneOuterGain;         return *this; }
 
-    inline SoundParams& position (float _x, float _y, float _z) { positionX_  = _x; positionY_  = _y; positionZ_  = _z; return *this; }
-    inline SoundParams& velocity (float _x, float _y, float _z) { velocityX_  = _x; velocityY_  = _y; velocityZ_  = _z; return *this; }
-    inline SoundParams& direction(float _x, float _y, float _z) { directionX_ = _x; directionY_ = _y; directionZ_ = _z; return *this; }
+    inline auto position (float _x, float _y, float _z) -> SoundParams& {  positionX_  = _x; positionY_  = _y; positionZ_  = _z; return *this; }
+    inline auto velocity (float _x, float _y, float _z) -> SoundParams& {  velocityX_  = _x; velocityY_  = _y; velocityZ_  = _z; return *this; }
+    inline auto direction(float _x, float _y, float _z) -> SoundParams& {  directionX_ = _x; directionY_ = _y; directionZ_ = _z; return *this; }
 
     // playback
     float gain_;
